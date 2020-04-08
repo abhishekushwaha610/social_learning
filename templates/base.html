@@ -8,30 +8,30 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(230, 230, 230);">
+            <div class="container p-2">
                 <a class="navbar-brand" href="/">Social Learning</a>
+            </div>
                 <ul class="nav justify-content-end">
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Signup</a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Student</a>
+                            <a class="dropdown-item" href="#">Teacher</a>
+                            <a class="dropdown-item" href="#">Institute</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
-                  <a class="nav-link active" href="#">Login</a>
-                </li>
-                <li class="nav-item dropdown" >
-                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Signup</a>
-                    
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <!-- <li class="nav-item">
+                        <a href="#" type="button" class="btn btn-outline-success">Login</a>
+                    </li>
+                    <!-- <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li> -->
             </ul>
-        </div>
         </nav>
         {% block content%}
         {% endblock content %}
