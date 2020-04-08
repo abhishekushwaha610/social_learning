@@ -27,4 +27,4 @@ def login(request):
         else:
             messages.success(request,"Welcome!")
             return HttpResponse(user)
-    
+    return render(request,"login.html")
