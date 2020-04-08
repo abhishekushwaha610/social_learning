@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home','account'
+    'home','account',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +127,7 @@ MESSAGE_TAGS = {
 
 
 AUTHENTICATION_BACKENDS = (
-    'accounts.views.EmailorUsernameModelBackend',
+    'account.views.EmailorUsernameModelBackend',
 )
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

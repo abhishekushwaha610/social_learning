@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,8 +9,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg fixed-top mainNavbar navbar-light" style="background-color: #e3f2fd;"">
-            <a class="navbar-brand" href="#">Social Learning    </a>
+        <nav class="navbar navbar-expand-lg fixed-top mainNavbar navbar-light shadow" style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="/">Social Learning    </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,11 +25,13 @@
                     <input class="form-control col-8" name="search" type="search" placeholder="Search">
                     <button class="btn btn-outline-success ml-3" type="submit">Search</button>
                 </form>
-            
-                    
-                  
-              
-                  <a href="#" type="button" class="btn btn-outline-danger  mr-sm-0 font-weight-bold " data-toggle="modal" data-target="#exampleModal">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'profile' %}?redirect={{request.path}}">
+                  <img src="{% static 'images/user.png' %}" class="rounded-circle" alt="{{user}}" height="32" width="32">
+                </a>
+                
+                {% else %}
+                  <a href="{% url 'login' %}?redirect={{request.path}}" class="btn btn-outline-danger  mr-sm-0 font-weight-bold ">
                     Login
                   </a>
                   <div class="dropdown mr-5">
@@ -36,13 +39,22 @@
                       Signup
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Student</button></a>
+                      <a style="text-decoration: none;" href="{% url 'signup' %}?as=student"><button class="dropdown-item" type="button">Student</button></a>
                       <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Institute</button></a>
                       <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Teacher</button></a>
                     </div>
                   </div>
+                  {% endif %}
             </div>
         </nav>
+        {% for message in messages %}      
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert" style="margin-top: 66px! important;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+           {{ message }}
+        </div>
+        {% endfor %}
 
         {% block content%}
         {% endblock content %}
