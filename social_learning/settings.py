@@ -36,9 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'home',
-    'videos',
+    'django.contrib.staticfiles', 
     'home','account',
 ]
 
