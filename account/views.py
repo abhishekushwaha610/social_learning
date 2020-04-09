@@ -6,6 +6,8 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.db.models import Q
 from .forms import Student_form
+from django.core.mail import send_mail
+
 class EmailorUsernameModelBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None,**kwargs):
         UserModel = get_user_model()

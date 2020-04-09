@@ -140,3 +140,10 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[ os.path.join(BASE_DIR,'static/'),]
 STATIC_ROOT = "/var/www/example.com/static/"
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sih202021@gmail.com'
+EMAIL_HOST_PASSWORD = 'sih@2020'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
