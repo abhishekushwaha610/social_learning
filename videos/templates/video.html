@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title%} {{video}} {% endblock %}
 
 {% block content %}
     <section class="bg-light">
         <div style="margin-top: 60px;"></div>
         <div class="card col-md-6 mt-4 px-0">
-            <iframe src="{{video.video_url}}" class="card-img" height="400"></iframe>
-            {{video.video_url}}
+            <iframe src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
             <div class="card-body">
                 {% if request.user == video.user%}
                 <a href="{% url 'edit_video' video.slug %}"> Edit </a>|
@@ -19,6 +19,33 @@
                 <span class="text-muted"> {{video.creation_time}}</span>
             </div>
         </div>
-        
+
+        <div class="media col-md-6">
+            <img src="{% static 'images/user.png' %}" class="mr-3" alt="..." width="64" height="64">
+            <div class="media-body">
+                <h5 class="mt-0 m-1">Abhishek Kushwaha</h5>
+                <small class="text-muted">3 234 nar 234  2342 23</small><br>
+                <span>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</span><br>
+                <a href="#">reply &crarr;</a>
+                
+                <div class="media mt-3">
+                    <a class="mr-3" href="#">
+                        <img src="{% static 'images/user.png' %}" class="mr-1" alt="..." width="64" height="64">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="m-0">Media heading</h5>
+                        <small class="text-muted">3 234 nar 234  2342 23</small><br>
+                        <span>    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</span><br>
+                        <a href="#">reply &crarr;</a>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+              <form action="">
+                  {{comment_form}}
+                    <button class="btn btn-danger mt-2">Comment</button>
+              </form>
+          </div>
     </section>
 {% endblock content %}
