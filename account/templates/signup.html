@@ -31,7 +31,12 @@
             </div>
               <hr>
               <input type="text" placeholder="Institue Name" class="form-control" name="institute">
+              {% if teach %}
+              <input type="text" placeholder="qualifications " class="form-control mt-3" name="qualifications">
+              <input type="text" placeholder="I am a" class="form-control mt-3" name="status">
+              {% else %}
               <input type="text" placeholder="I am interests In " class="form-control mt-3" name="interests">
+              {% endif %}
               <hr>
               
               <div class="input-group my-4">
@@ -41,7 +46,7 @@
                     <span class="input-group-text" id="basic-addon2">@</span>
                 </div> -->
             </div>
-            
+{{form.error}}            
             <button type="submit" class="btn btn-dark my-3 col-12">SignUp Now</button>
         </form> 
         <!-- {{form.as_p}} -->

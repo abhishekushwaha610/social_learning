@@ -39,9 +39,9 @@
                       Signup
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <a style="text-decoration: none;" href="{% url 'signup' %}?as=student"><button class="dropdown-item" type="button">Student</button></a>
-                      <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Institute</button></a>
-                      <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Teacher</button></a>
+                      <a style="text-decoration: none;" href="{% url 'signup' 'std' %}"><button class="dropdown-item" type="button">Student</button></a>
+                      <!-- <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Institute</button></a> -->
+                      <a style="text-decoration: none;" href="{% url 'signup' 'teach' %}"><button class="dropdown-item" type="button">Teacher</button></a>
                     </div>
                   </div>
                   {% endif %}

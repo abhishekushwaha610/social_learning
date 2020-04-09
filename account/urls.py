@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path("login/",views.login,name="login"),
     path("logout/",views.logout,name="logout"),
-    path("signup/",views.signup,name="signup"),
+    path("signup/<str:type>",views.signup,name="signup"),
     path("profile/",views.profile,name="profile"),
     # foggot password
     path('reset_password/',auth_views.PasswordResetView.as_view(), name='reset_password'),

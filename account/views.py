@@ -5,7 +5,7 @@ from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.db.models import Q
-from .forms import Student_form
+from .forms import Student_form,Teacher_form
 from django.core.mail import send_mail
 
 class EmailorUsernameModelBackend(ModelBackend):
@@ -35,9 +35,14 @@ def login(request):
             return redirect("/")
     return render(request,"login.html")
 
-def signup(request):
+def signup(request,type):
+    
     if request.method == "POST":
-        form = Student_form(request.POST,request.FILES)
+        if type == "teach":
+            form = Teacher_form(request.POST,request.FILES)
+        else:
+            form = Student_form(request.POST,request.FILES)
+        
         if form.is_valid():
             fname = request.POST["fname"]
             lname = request.POST["lname"]
@@ -63,6 +68,8 @@ def signup(request):
                     messages.success(request,"Signup succes !")
                     return redirect("login")
                 messages.error(request,"User With profile has already Exist!")
+    if type == "teach":
+        return render(request,"signup.html",{"form": Teacher_form(),"teach":True})
     return render(request,"signup.html",{"form": Student_form()})
 
 
