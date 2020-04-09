@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,HttpResponse
-from home.models import Video
+from videos.models import Video
 import PIL
 from  django.db.models import Q
 
