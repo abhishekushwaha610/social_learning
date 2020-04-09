@@ -26,6 +26,7 @@
                     <button class="btn btn-outline-success ml-3" type="submit">Search</button>
                 </form>
                 {% if request.user.is_authenticated %}
+                <a href="{% url 'upload' %}" class=" mr-3  btn btn-outline-danger " >Upload Video</a>
                 <a href="{% url 'profile' %}?redirect={{request.path}}">
                   <img src="{% static 'images/user.png' %}" class="rounded-circle" alt="{{user}}" height="32" width="32">
                 </a>

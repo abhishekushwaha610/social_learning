@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title%} {{video}} {% endblock %}
+
+{% block content %}
+    <section class="bg-light">
+        <div style="margin-top: 60px;"></div>
+        <div class="card col-md-6 mt-4 px-0">
+            <iframe src="{{video.video_url}}" class="card-img" height="400"></iframe>
+            {{video.video_url}}
+            <div class="card-body">
+                {% if request.user == video.user%}
+                <a href="{% url 'edit_video' video.slug %}"> Edit </a>|
+                <a href="{% url 'delete_video' video.slug %}" class="text-danger" onclick="return confirm('Are you sure ?')"> Delete</a>
+                {% endif %}
+                <h5 class="card-title">{{video.title}}</h5>
+                {{video.description}}
+            </div>
+            <div class="card-footer">
+                <span class="text-muted"> {{video.creation_time}}</span>
+            </div>
+        </div>
+        
+    </section>
+{% endblock content %}
