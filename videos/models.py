@@ -20,9 +20,9 @@ class Video(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     video = models.ForeignKey(Video,on_delete=models.CASCADE)
-    replay = models.ForeignKey('self', null=True, blank=True, related_name='replies',on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies',on_delete=models.CASCADE)
     description = models.TextField(max_length=300)
-    creation_time = models.DateTimeField(default=datetime.now() , blank=False, null=False) 
+    creation_time = models.DateTimeField(default=datetime.now()) 
     
     def __str__(self):
         return str(self.user)

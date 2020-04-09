@@ -19,33 +19,75 @@
                 <span class="text-muted"> {{video.creation_time}}</span>
             </div>
         </div>
-
+        
+        {% for comment in video.comment_set.all %}
+        {%if not comment.parent %}
         <div class="media col-md-6">
             <img src="{% static 'images/user.png' %}" class="mr-3" alt="..." width="64" height="64">
             <div class="media-body">
-                <h5 class="mt-0 m-1">Abhishek Kushwaha</h5>
-                <small class="text-muted">3 234 nar 234  2342 23</small><br>
-                <span>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</span><br>
-                <a href="#">reply &crarr;</a>
-                
+                <h5 class="mt-0 m-1">{{comment.user.first_name}} {{comment.user.last_name}}</h5>
+                <small class="text-muted">{{comment.creation_time}}</small><br>
+                <span>{{comment.description}}</span><br>
+                <button class="btn text-primary" id="{{comment.id}}" onclick="commentFormShow(id)">reply &crarr;</button>
+                {% if comment.user == request.user %}
+                <a href="{% url 'comment_delete' comment.id %}?redirect={{request.path}}" class="btn text-danger" onclick="return confirm('Confirm you want to delete ?');"> Delete &crarr;</a>
+                {% endif %}
+                <form id="take-{{comment.id}}" action="{% url 'comment_save' video.id comment.id %}" method="POST" style="display: none;">{% csrf_token %}
+                    {{comment_form}}
+                    <button class="btn btn-danger mt-2">comment </button>
+                </form>
+                {% for child in comment.replies.all %}
+                {% if child %}
                 <div class="media mt-3">
-                    <a class="mr-3" href="#">
-                        <img src="{% static 'images/user.png' %}" class="mr-1" alt="..." width="64" height="64">
-                    </a>
+                    <a class="mr-3" href="#"> <img src="{% static 'images/user.png' %}" class="mr-1" alt="..." width="64" height="64"> </a>
                     <div class="media-body">
-                        <h5 class="m-0">Media heading</h5>
-                        <small class="text-muted">3 234 nar 234  2342 23</small><br>
-                        <span>    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</span><br>
-                        <a href="#">reply &crarr;</a>
+                        <h5 class="m-0">{{ child.user.first_name }} {{ child.user.last_name }}</h5>
+                        <small class="text-muted">{{ child.creation_time }}</small><br>
+                        <span>{{child.description}} </span><br>
+                        <button class="btn text-primary" id="{{child.id}}" onclick="commentFormShow(id)">reply &crarr;</button>
+                        {% if child.user == request.user %}
+                        <a href="{% url 'comment_delete' child.id %}?redirect={{request.path}}" class="btn text-danger" onclick="return confirm('Confirm you want to delete ?');"> Delete &crarr;</a>
+                        {% endif %}
+                        <form id="take-{{child.id}}" action="{% url 'comment_save' video.id child.id %}" method="POST" style="display: none;">{% csrf_token %}
+                            {{comment_form}}
+                            <button class="btn btn-danger mt-2">comment </button>
+                        </form>
+                        {% for gchild in child.replies.all%}                        
+                        <div class="media mt-3">
+                            <a class="mr-3" href="#"> <img src="{% static 'images/user.png' %}" class="mr-1" alt="..." width="64" height="64"> </a>
+                            <div class="media-body">
+                                <h5 class="m-0">{{ gchild.user.first_name }} {{ gchild.user.last_name }}</h5>
+                                <small class="text-muted">{{ gchild.creation_time }}</small><br>
+                                <span>{{gchild.description}} </span><br>
+                                {% if gchild.user == request.user %}
+                                <a href="{% url 'comment_delete' gchild.id %}?redirect={{request.path}}" class="btn text-danger" onclick="return confirm('Confirm you want to delete ?');"> Delete &crarr;</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-              </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
-          </div>
-          <div class="col-md-6">
-              <form action="">
+        </div>
+        {% endif %}
+          {% endfor %}
+          <div class="col-md-6 my-5">
+              <form action="{% url 'comment_save' video.id 0 %}" method="POST">{% csrf_token %}
                   {{comment_form}}
-                    <button class="btn btn-danger mt-2">Comment</button>
-              </form>
-          </div>
-    </section>
+                  <button class="btn btn-danger mt-2">Comment</button>
+                </form>
+            </div>
+        </section>
 {% endblock content %}
+
+{% block script %}
+<script>
+function commentFormShow(comment_id){
+    $(this).html("cancel")
+    $("#take-"+comment_id).toggle();
+    // alert("video_id")
+}
+</script>
+{% endblock script %}
