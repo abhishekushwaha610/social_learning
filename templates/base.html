@@ -21,7 +21,7 @@
                 </li> -->
                 <!-- search        -->
                 
-                <form class="form-inline ml-auto col-md-7 pl-0 mt-1" id="searchForm">
+                <form class="form-inline ml-auto col-md-7 pl-0 mt-1" id="searchForm" method="POST" action="{% url 'search' %}">{% csrf_token %}
                     <input class="form-control col-8" name="search" type="search" placeholder="Search">
                     <button class="btn btn-outline-success ml-3" type="submit">Search</button>
                 </form>
