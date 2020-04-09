@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock title %}
+{% block content %}
+<div style="padding-top: 90px;"></div>
+<div class="d-flex justify-content-center my-5">
+    <div class="card bg-light col-md-3 text-center p-3 mx-3 shadow">
+        <h1 class="my-3">Login</h1>
+        <form method= "POST" id="loginFormSubmission">{% csrf_token %}
+            <div class="input-group my-3 ">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">@</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Username or Email" name="email_or_username" required>
+              </div>
+              
+              <div class="input-group my-4">
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                <!-- <div class="input-group-append">
+                  <span class="input-group-text" id="basic-addon2">@</span>
+                </div> -->
+              </div>
+              
+            <button type="submit" class="btn btn-dark my-3 col-12">Log In</button>
+        </form> 
+        <p class="font-weight-bold">or</p>
+        <div class="mb-3 ">
+            <a href="#" >Create an Account</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

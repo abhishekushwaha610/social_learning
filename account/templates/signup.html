@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+<div style="padding-top: 60px;"></div>
+<div class="d-flex justify-content-center my-5">
+    <div class="card bg-light col-md-6 text-center p-3 mx-3 shadow">
+        <h1 class="mt-3">Sign Up</h1> <hr>
+        <form method= "POST" id="loginFormSubmission" enctype="multipart/form-data" >{% csrf_token %}
+            <div class="row">
+                <div class="col-md mt-2">
+                    <input type="text" class="form-control" placeholder="Fist Name" name="fname" required>
+                </div>
+                <div class="col-md mt-2">
+                    <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md mt-2">
+                    <input type="text" class="form-control" placeholder="Username" name="username" required>   
+                </div>
+                <div class="col-md mt-2 d-flex">
+                    <span class="mt-2 mr-2 text-muted">Profile: </span>
+                    <input type="file" class="mt-2" placeholder="Profile Pic" name="image">
+                </div>
+            </div>
+
+            <div class="input-group my-3 ">
+                
+                <input type="text" class="form-control" placeholder="Email" name="email" required>
+            </div>
+              <hr>
+              <input type="text" placeholder="Institue Name" class="form-control" name="institute">
+              <input type="text" placeholder="I am interests In " class="form-control mt-3" name="interests">
+              <hr>
+              
+              <div class="input-group my-4">
+                  <input type="password" class="form-control mr-3" placeholder="Password" name="password" required>
+                  <input type="password" class="form-control" placeholder="Confirm Password" name="cpassword" required>
+                <!-- <div class="input-group-append">
+                    <span class="input-group-text" id="basic-addon2">@</span>
+                </div> -->
+            </div>
+            
+            <button type="submit" class="btn btn-dark my-3 col-12">SignUp Now</button>
+        </form> 
+        <!-- {{form.as_p}} -->
+        <p class="font-weight-bold">or</p>
+        <div class="mb-3 ">
+            <a href="{% url 'login' %}" >Already an account</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
