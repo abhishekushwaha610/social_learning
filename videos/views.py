@@ -72,3 +72,6 @@ def comment_delete(request,comment_id):
     if url:
         return redirect(url)
     return redirect("/")
+
+def all_videos(request):
+     return render(request,"All_videos.html")
