@@ -85,7 +85,7 @@
                     <div class="col-md-9">
                         <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
                         <h5 class="mt-2">{{video.title}}</h5>
-                        <!-- <p>{{comment.description}}<p><br> -->
+                        <p>{{video.description}}<p>
                         <p>{{video.creation_time}}</p>
                         <p>
                             {% if request.user == video.user%}

@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 {% block title%} Search {% endblock %}
 {% block content %}
-<div class="container" style="margin-top: 10%;">
+<div style="padding-top: 70px;"></div>
+<div class="container">
+    <h5>Search Related Videos</h5>
+    {% for video in videos.all %}
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-12 mt-2">
             <div class="card card-body">
-                <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                </iframe>   
+                <div class="span4" style="margin-right: 10px;">
+                    <iframe style="float: left;" width="300" src="{{video.video_url}}">
+                    </iframe>
+                    <div class="content-heading ml-5">
+                        <h5>{{video.title}} </h5>
+                        <p>{{video.description}}</p>
+                        <p>{{video.creation_time}}</p>
+                    </div>        
+                </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 </div>   
 {% endblock content %}

@@ -6,13 +6,13 @@
     <div class="container">
         <h4>Official Themes</h4>
         <div class="row" style="padding: 0%;">
-        {% for videos1 in videos.all %}
+        {% for video in videos.all  %}
             <div class="col-md-3">
                 <div class="card card-body">
-                    <iframe  src="{{ videos1.video }}"">
-                    </iframe>       
-                    <p>{{ videos1.title }}</p>
-                    <p>{{ videos1.description }}</p>
+                    <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
+                        <h5>{{video.title}} </h5>
+                        <p>{{video.description}}</p>
+                        <p>{{video.creation_time}}</p>
                 </div>
             </div>
         {% endfor %}    
