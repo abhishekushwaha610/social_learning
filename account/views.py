@@ -27,8 +27,8 @@ def login(request):
         password = request.POST["password"]
         user = auth.authenticate(username = email_or_username,password=password)
         if user is None:
-            messages.error(request,"User has already Exist !")
-            return HttpResponse("already Exist!")
+            messages.error(request,"Invalid username or Password")
+            return redirect("login")
         else:
             auth.login(request,user)
             messages.success(request,"Welcome!")
@@ -68,6 +68,12 @@ def signup(request,type):
                     messages.success(request,"Signup succes !")
                     return redirect("login")
                 messages.error(request,"User With profile has already Exist!")
+        else:
+            print("Not valid")
+            if type == "teach":
+                return render(request,"signup.html",{"form": form,"teach":True})
+            return render(request,"signup.html",{"form": form,})
+            
     if type == "teach":
         return render(request,"signup.html",{"form": Teacher_form(),"teach":True})
     return render(request,"signup.html",{"form": Student_form()})
