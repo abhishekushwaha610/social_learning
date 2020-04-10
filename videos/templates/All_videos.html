@@ -6,13 +6,13 @@
     <div class="container">
         <h4>All Videos</h4>
         <div class="row" style="padding: 0%;">
-        {% for videos1 in videos.all %} <!--database attributes should be change -->
+        {% for video in videos %} <!--database attributes should be change -->
             <div class="col-md-3">
                 <div class="card card-body">
-                    <iframe  src="{{ videos1.video_url }}"">
+                    <iframe  src="{{ video.video_url }}"">
                     </iframe>       
-                    <p>{{ videos1.title }}</p>
-                    <p>{{ videos1.description }}</p>
+                    <p>{{ video.title }}</p>
+                    <p>{{ video.description }}</p>
                 </div>
             </div>
         {% endfor %}  
