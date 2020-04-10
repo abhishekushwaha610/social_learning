@@ -26,10 +26,13 @@
                     <button class="btn btn-outline-success ml-3" type="submit">Search</button>
                 </form>
                 {% if request.user.is_authenticated %}
+                {% if user.teacher %}
                 <a href="{% url 'upload' %}" class=" mr-3  btn btn-outline-danger " >Upload Video</a>
+                {%endif%}
                 <a href="{% url 'profile' user.username %}?redirect={{request.path}}">
-                  <img src="{{user.student.image.url}}" class="rounded-circle"  height="32" width="32">
-                  <img src="{{user.teacher.image.url}}" class="rounded-circle"  height="32" width="32">
+                  {% if user.teacher %}<img src="{{user.teacher.image.url}}" class="rounded-circle"  height="32" width="32">
+                  {%else%}<img src="{{user.student.image.url}}" class="rounded-circle"  height="32" width="32">
+                  {%endif%}
                 </a>
                 
                 {% else %}
