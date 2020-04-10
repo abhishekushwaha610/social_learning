@@ -4,11 +4,11 @@ from .models import Student,Teacher
 class Student_form(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['institute','image',"interests"]
+        fields = ['image','institute',"interests"]
         
 
 class Teacher_form(forms.ModelForm):
     class Meta:
         model = Teacher
-        fields = ['institute','image',"qualifications","status"]
+        fields = ['image','institute',"qualifications","status"]
         
