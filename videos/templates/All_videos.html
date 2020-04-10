@@ -4,16 +4,18 @@
 <marquee class="bg-danger text-white py-3" style="margin-top: 4%;" behavior="alternate" direction="left">Stay Home We Safe</marquee>
 
     <div class="container">
-        <h4>All Videos</h4>
-        <div class="row" style="padding: 0%;">
+        
+<h2 class="h1-responsive font-weight-bold  "style="text-align:center">Videos</h2>
+<hr align="center" width="80%" color="green">
+        <div class="row " style="padding: 0%;">
         {% for video in videos %} <!--database attributes should be change -->
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe  src="{{ video.video_url }}"">
+            <div class="col-sm-6" style = "padding-bottom: 15px; padding-top: 15px;">
+                <div class="embed-responsive embed-responsive-16by9 ">
+                    <iframe  src="{{ video.video_url }}">
                     </iframe>       
-                    <p>{{ video.title }}</p>
-                    <p>{{ video.description }}</p>
+                   
                 </div>
+
             </div>
         {% endfor %}  
         </div>
