@@ -1,102 +1,108 @@
 {% extends 'base.html' %}
 {% block title%} Social Leaning {% endblock %}
 {% block content %}
+{% load static  %}
 <marquee class="bg-danger text-white py-3" style="margin-top: 4%;" behavior="alternate" direction="left">Stay Home We Safe</marquee>
 
+
+<link rel="stylesheet" href="{% static '/css/home.css' %}">
+<!-- main section   -->
+<section class="mainsec">
+    <div class="maintxt">
+        <h1 class="text-center">A new way to understand the world and yourself .</h1>
+        <a name="" id="" class="btn btn-primary rounded-pill " href="#" role="button">Join Now</a> 
+    </div>
+</section>
+
+<!-- Choose section -->
+<section class="sec " id="second">
     <div class="container">
-        <h4>Official Themes</h4>
-        <div class="row" style="padding: 0%;">
-        {% for video in videos.all  %}
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
-                        <h5>{{video.title}} </h5>
-                        <p>{{video.description}}</p>
-                        <p>{{video.creation_time}}</p>
-                </div>
+        <h1> Select the topic you want to study about .</h1>
+        <p> Understand the science behind differents arts .</p>
+        <div class="subjects">
+            <div class="row">
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Computer Science</a>
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Philosphy</a>
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">physics</a>
             </div>
-        {% endfor %}    
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>
-                    <p>nkjnjfadadjkdfn</p>
-                    <span>1k</span>   
-                </div>
+            <div class="row">
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Mathematics</a>
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Arts</a>
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Physics</a>
             </div>
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
+            <div class="row">
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Media </a>
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">Chemistry</a>
+                <a href="" class="topics col-xs-4 my-1 mx-1 ">physics</a>
             </div>
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
-            </div>
+            
         </div>
     </div>
+</section>
 
+<!-- Servey section -->
+<section class="sec" id="third">
     <div class="container">
-        <h4>computer science</h4>
-        <div class="row" style="padding: 0%;">
-            <div class="col-md-3">
+        <div class="cont">
+            <h1 class="mb-3">Take a survey to understand your mind .</h1>
+            <p class="mb-5">There will be 20 questions which will help you , to use your full potential in the right direction.</p>
+            <button type="button" name="" id="" class="btn btn-outline-primary rounded-pill"> Start Now </button>
+        </div>
+    </div>
+</section>
+
+<!-- videos section -->
+<section class="sec" id="fourth">
+    <div class="container">
+        <h1 class="text-center" >Explore different topics.</h1>
+    </div>
+    <div class="container my-3 " >
+        
+        <div id="imgcont" class="mt-5">
+            <div class="controllers">
+                <button id="left"> < </button>
+                <button id="right"> > </button>
+                
+            </div>
+        <div class="videoca " style="padding: 0%;">
+            <div class="col">
                 <div class="card card-body">
                     <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>   
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col">
                 <div class="card card-body">
                     <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>   
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col">
                 <div class="card card-body">
                     <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>   
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col">
                 <div class="card card-body">
                     <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>   
                 </div>
             </div>
+            
         </div>
     </div>
 
-    <div class="container">
-        <h4>medical science</h4>
-        <div class="row" style="padding: 0%;">
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
-            </div>
-        </div>
+
     </div>
+
+</section>
+
+
 
 {% endblock content %}
+
+
+{% block script %}
+    <script src="{% static 'js/home.js' %}" ></script>
+{% endblock script %}

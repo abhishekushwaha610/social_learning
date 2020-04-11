@@ -1,0 +1,138 @@
+*{
+    transition: all .25s;
+}
+/* common for all sections */
+.sec{
+    min-height: 100vh !important;
+    width: 100%;
+    overflow: hidden;
+}
+/* main section */
+.mainsec{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.maintxt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* second section */
+
+#second{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+#second h1{
+    /* font-size: 55px; */
+    text-align: center;
+}
+
+#second .subjects{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topics{
+    background-color: rgb(180, 180, 180);
+    border-radius: 100px;
+    padding: .3em 1em ;
+    text-decoration: none;
+    color:black;
+}
+
+.topics:hover{
+    text-decoration: none;
+
+    background-color: blue;
+    color: white;
+}
+
+/* Third section */
+
+#third{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Fourth section */
+
+#fourth{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    height: fit-content;
+    text-align: center;
+}
+
+#fourth h4{
+    margin-top: 1em;
+    text-align: left;
+}
+
+#imgcont{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.videoca{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    position: relative;
+    /* margin-left: -400px; */
+    margin-right: -400px;
+}
+
+.controllers{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    z-index: 200;
+}
+
+.controllers *{
+    display:flex;
+    justify-content: center;
+    align-items: center ;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: blue;
+    border-radius: 50%;
+}
+
+#fourth ::-webkit-scrollbar{
+    display: none;
+}
+
+#fourth ::-webkit-scrollbar-button{
+    display: block;
+    justify-content: center;
+    align-items: center ;
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+}
+
