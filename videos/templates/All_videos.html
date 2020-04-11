@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title%} Social Leaning {% endblock %}
 {% block content %}
+<!--database attributes should be change -->
 <marquee class="bg-danger text-white py-3" style="margin-top: 4%;" behavior="alternate" direction="left">Stay Home We Safe</marquee>
 
     <div class="container">
@@ -8,7 +9,7 @@
 <h2 class="h1-responsive font-weight-bold  "style="text-align:center">Videos</h2>
 <hr align="center" width="80%" color="green">
         <div class="row " style="padding: 0%;">
-        {% for video in videos %} <!--database attributes should be change -->
+        <!-- {% for video in videos %} 
         
             <div class="col-sm-6" style = "padding-bottom: 15px; padding-top: 15px;">
                
@@ -22,7 +23,20 @@
             <br>
             {{video.creation_time}} <br>
             {{video.description}} <br>
-        {% endfor %}  
+        {% endfor %}   -->
+        <!--database attributes should be change -->
+            
+        {% for video in videos %} 
+            <a href="{% url 'video' video.slug %}" class="card-body media bg-light text-decoration-none ">
+                <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                <!-- <img src="..." class="mr-3" alt="..."> -->
+                <div class="media-body">
+                  <h5 class="mt-0">{{video.title}}</h5>
+                  <p class="text-muted">{{video.creation_time}}</p>
+                </div>
+            </a>
+            <!-- <hr> -->
+            {% endfor %}
         </div>
     </div> 
 
