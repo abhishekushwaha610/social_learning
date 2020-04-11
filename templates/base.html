@@ -40,39 +40,7 @@
                     <div class=" dropdown-menu dropdown-menu-right mt-3 " aria-labelledby="dropdownId">
                       <a class="dropdown-item" href="{% url 'profile'  %}?redirect={{request.path}}">Profile</a>
                       <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-          
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <li class=" nav-link  ">
-                    <a class=" nav-link  font-weight-bold text-danger" href="{% url 'all_video' %}">Explore</a>
-                </li>
-                <!-- search        -->
-                
-                <form class="form-inline ml-auto col-md-7 pl-0 mt-1" id="searchForm" method="GET" action="{% url 'search' %}">
-                    <input class="form-control col-8" name="search" type="search?redirect={{request.path}}" placeholder="Search">
-                    <button class="btn btn-outline-success ml-3" type="submit">Search</button>
-                </form>
-                {% if request.user.is_authenticated %}
-                {% if user.teacher %}
-                <a href="{% url 'upload' %}" class=" mr-3  btn btn-outline-danger " >Upload Video</a>
-                {%endif%}
-                <a href="{% url 'profile' user.username %}?redirect={{request.path}}">
-                  {% if user.teacher %}<img src="{{user.teacher.image.url}}" class="rounded-circle"  height="32" width="32">
-                  {%else%}<img src="{{user.student.image.url}}" class="rounded-circle"  height="32" width="32">
-                  {%endif%}
-                </a>
-                
-                {% else %}
-                  <a href="{% url 'login' %}?redirect={{request.path}}" class="btn btn-outline-danger  mr-sm-0 font-weight-bold ">
-                    Login
-                  </a>
-                  <div class="dropdown mr-5">
-                    <a href="#" class="btn btn-lg  dropdown-toggle text-dark" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Signup
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                      <a style="text-decoration: none;" href="{% url 'signup' 'std' %}"><button class="dropdown-item" type="button">Student</button></a>
-                      <!-- <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Institute</button></a> -->
-                      <a style="text-decoration: none;" href="{% url 'signup' 'teach' %}"><button class="dropdown-item" type="button">Teacher</button></a>
+              
                     </div>
                   </div>
 
