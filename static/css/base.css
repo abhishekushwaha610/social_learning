@@ -15,3 +15,25 @@ footer a:hover{
 .navbar-collapse{
     background-color: white !important;
 }
+
+/* small screens */
+
+@media(max-width:900px){
+    header{
+        height: 40px;
+    }
+    .navbar-toggler{
+        border: none !important;
+    }
+    .navbar-toggler:focus{
+        border: none !important;
+        outline: none;
+    }
+    .navprofile-img{
+        margin: .5em 0em;
+    }
+    .dropdown-menu{
+        width: 100%;
+        padding-top: 100%;
+    }
+}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock title %}
+{% block content %}
+
+<div style="padding-top: 90px;"></div>
+<div class="d-flex justify-content-center my-5">
+    <div class="card bg-light col-md-3 text-center p-3 mx-3 shadow">
+        <h1 class="my-3"> 20 questions </h1>
+        <p> To understand yourself .</p>
+        <form method= "POST" id="loginFormSubmission">{% csrf_token %}
+            <div class="md-form mb-0">
+                <label for="contact-name" class="label">Your name</label>
+                <input type="text" id="contact-name" class="form-control fields" name="firstname">
+            </div>  
+            <div class="md-form mb-0">
+                <label for="contact-name" class="label">Subject</label>
+                <input type="text" id="contact-name" class="form-control fields" name="firstname">
+            </div>  
+            <button type="submit" class="btn btn-primary my-3 col-12">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock content %}

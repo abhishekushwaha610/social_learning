@@ -44,7 +44,7 @@
                       aria-expanded="false" height="32" width="32">
                       {%endif%}
 
-                      <div class=" dropdown-menu dropdown-menu-right mt-3 " aria-labelledby="dropdownId">
+                      <div class=" dropdown-menu dropdown-menu-right " aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="{% url 'profile' user.username  %}?redirect={{request.path}}">Profile</a>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                       </div>
