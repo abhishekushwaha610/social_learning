@@ -11,15 +11,16 @@
                     <div class="col-md-9">
                         <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
                         <h5 class="mt-2">{{video.title}}</h5>
-                        <p>{{video.description}}<p>
-                        <p>{{video.creation_time}}</p>
-                        <p>Catagory: <span class="text-primary">{{video.get_catagory_display}}</span></p>
                         <p>
                             {% if request.user == video.user%}
                             <a href="{% url 'edit_video' video.slug %}"> Edit </a>|
                             <a href="{% url 'delete_video' video.slug %}" class="text-danger" onclick="return confirm('Are you sure ?')"> Delete</a>
                             {% endif %}
                         </p>
+                        <p>{{video.creation_time}}</p>
+                        <p>{{video.description}}<p>
+                        <p>Catagory: <span class="text-primary">{{video.get_catagory_display}}</span></p>
+                        <p>Notes: {% if video.notes %}<a href="{{video.notes.url}}" class="my-3">Download</a>{% else %}<i>Not Availible</i>{%endif%}</p>
                         <div class="d-flex border rounded border-danger p-2 align-items-center  ">
                             <div class="font-weight-bold">{{video.user.first_name}} {{video.user.last_name}}</div>
                             <a href="{% url 'profile' video.user %}" class="ml-auto btn btn-danger">View Profile</a>
