@@ -11,8 +11,10 @@
                 <hr>
                 <p>{{user.first_name}} {{user.last_name}} </p>
                 <p>{{user.email}}</p>
+                {% if user == request.user %}
                 <a class="btn btn-primary" href="{% url 'edit_profile' %}" role="button">Update Profile</a>
                 <a href="{% url 'logout' %}" class="btn btn-danger mt-4">Logout </a>
+                {% endif %}
             </div>
         </div>
 
@@ -37,7 +39,7 @@
         </div>
         
 
-        <div class="container col-md-10 ">
+        <div class="container col-md-10 p-1">
             <h5 align="center" class="mt-4 bg-light p-4">Uploaded Videos </h5>
             {% for video in user.video_set.all %}
             <a href="{% url 'video' video.slug %}" class="card-body media bg-light text-decoration-none ">

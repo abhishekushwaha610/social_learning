@@ -76,7 +76,7 @@ def comment_delete(request,comment_id):
 class AllList(ListView):
     template_name = "All_videos.html"
     context_object_name = 'videos'
-    paginate_by =1
+    paginate_by = 10
     def get_queryset(self):
         # self.language = get_object_or_404(ProjectDetail, language=self.kwargs['catagory'])
         # query = self.kwargs["catagory"]

@@ -10,9 +10,11 @@
                 <img src="{{user.student.image.url}}" alt="user image" style="margin-left: 20%; border-radius: 50%;" width="50%">
                 <hr>
                 <p>{{user.first_name}} {{user.last_name}}</p>
-                <p>{{user.email}}</p>
+                <p>@{{user.email}}</p>
+                {% if user == request.user %}
                 <a class="btn btn-primary" href="{% url 'edit_profile' %}" role="button">Update Profile</a>
                 <a href="{% url 'logout' %}" class="btn btn-danger mt-4">Logout </a>
+                {% endif %}
             </div>
         </div>
 
