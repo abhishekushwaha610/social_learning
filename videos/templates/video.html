@@ -13,6 +13,7 @@
                         <h5 class="mt-2">{{video.title}}</h5>
                         <p>{{video.description}}<p>
                         <p>{{video.creation_time}}</p>
+                        <p>Catagory: <span class="text-primary">{{video.get_catagory_display}}</span></p>
                         <p>
                             {% if request.user == video.user%}
                             <a href="{% url 'edit_video' video.slug %}"> Edit </a>|
@@ -28,7 +29,9 @@
                             {% for comment in video.comment_set.all %}
                             {%if not comment.parent %}
                             <div class="media col-md-6 mt-5">
-                                <img src="{% static 'images/user.png' %}" class="mr-3" alt="..." width="64" height="64">
+                                <a href="{% url 'profile' comment.user %} ">
+                                    <img src="{% if comment.user.teacher %}{{comment.user.teacher.image.url}}{%else%}{{comment.user.student.image.url}}{%endif%}" class="mr-3" alt="..." width="64" height="64">
+                                </a>
                                 <div class="media-body">
                                     <h5 class="mt-0 m-1">{{comment.user.first_name}} {{comment.user.last_name}}</h5>
                                     <small class="text-muted">{{comment.creation_time}}</small><br>
@@ -44,7 +47,7 @@
                                     {% for child in comment.replies.all %}
                                     {% if child %}
                                     <div class="media mt-3">
-                                        <a class="mr-3" href="#"> <img src="{% static 'images/user.png' %}" class="mr-1" alt="..." width="64" height="64"> </a>
+                                        <a class="mr-3" href="{% url 'profile' child.user %}"> <img src="{% if child.user.teacher %}{{child.user.teacher.image.url}}{%else%}{{child.user.student.image.url}}{%endif%}" class="mr-1" alt="..." width="64" height="64"> </a>
                                         <div class="media-body">
                                             <h5 class="m-0">{{ child.user.first_name }} {{ child.user.last_name }}</h5>
                                             <small class="text-muted">{{ child.creation_time }}</small><br>
@@ -59,7 +62,7 @@
                                             </form>
                                             {% for gchild in child.replies.all%}                        
                                             <div class="media mt-3">
-                                                <a class="mr-3" href="#"> <img src="{% static 'images/user.png' %}" class="mr-1" alt="..." width="64" height="64"> </a>
+                                                <a class="mr-3" href="{% url 'profile' gchild.user %}"> <img src="{% if gchild.user.teacher %}{{gchild.user.teacher.image.url}}{%else%}{{gchild.user.student.image.url}}{%endif%}" class="mr-1" alt="..." width="64" height="64"> </a>
                                                 <div class="media-body">
                                                     <h5 class="m-0">{{ gchild.user.first_name }} {{ gchild.user.last_name }}</h5>
                                                     <small class="text-muted">{{ gchild.creation_time }}</small><br>

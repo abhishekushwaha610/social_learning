@@ -3,6 +3,16 @@ from datetime import datetime
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 # Create your models here.
+VIDEO_CATEGORIES = (
+    ('cse','Computer Science'),
+    ('phs','Philosphy'),
+    ('phy','Physics'),
+    ('mda', 'Media'),
+    ('mth', 'Methametics'),
+    ('art', 'Arts'),
+    ('chy', 'Chemistry'),
+    ('bio', 'Biology'),
+)
 class Video(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
@@ -10,6 +20,7 @@ class Video(models.Model):
     description = models.TextField(max_length=300)
     creation_time = models.DateTimeField(default=datetime.now() , blank=False, null=False) 
     video_url = models.URLField()
+    catagory = models.CharField(choices=VIDEO_CATEGORIES,max_length=3)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
