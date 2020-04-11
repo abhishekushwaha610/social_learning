@@ -12,7 +12,7 @@ def home(request):
         "videos": video,
     }
 
-    return render(request, "home.html")    
+    return render(request, "home.html",param)    
 
 def search(request):
     

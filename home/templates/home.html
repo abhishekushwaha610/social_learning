@@ -14,7 +14,7 @@
         <div class="row">
 
             <div class="col-12">
-                <a name="" id="" class="btn btn-outline-primary rounded-pill regbtn " href="{% url 'all_video' %}" role="button"> Your Tutorials</a> 
+                <a name="" id="" class="btn btn-outline-danger rounded-pill regbtn " href="{% url 'all_video' %}" role="button"> Your Tutorials</a> 
             </div>
             
         </div>
@@ -44,19 +44,19 @@
         <p> Understand the science behind differents arts .</p>
         <div class="subjects container mt-5">
             <div class="row">
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Computer Science</a>
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Philosphy</a>
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">physics</a>
+                <a href="{% url 'all_video' %}?catagory=cse" class="topics col-xs-4 my-1 mx-1 ">Computer Science</a>
+                <a href="{% url 'all_video' %}?catagory=phs" class="topics col-xs-4 my-1 mx-1 ">Philosphy</a>
+                <a href="{% url 'all_video' %}?catagory=phy" class="topics col-xs-4 my-1 mx-1 ">physics</a>
             </div>
             <div class="row">
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Mathematics</a>
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Arts</a>
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Physics</a>
+                <a href="{% url 'all_video' %}?catagory=mth" class="topics col-xs-4 my-1 mx-1 ">Mathematics</a>
+                <a href="{% url 'all_video' %}?catagory=art" class="topics col-xs-4 my-1 mx-1 ">Arts</a>
+                <a href="{% url 'all_video' %}?catagory=bio" class="topics col-xs-4 my-1 mx-1 ">Biology</a>
             </div>
             <div class="row">
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Media </a>
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">Chemistry</a>
-                <a href="" class="topics col-xs-4 my-1 mx-1 ">physics</a>
+                <a href="{% url 'all_video' %}?catagory=mda" class="topics col-xs-4 my-1 mx-1 ">Media </a>
+                <a href="{% url 'all_video' %}?catagory=chy" class="topics col-xs-4 my-1 mx-1 ">Chemistry</a>
+                <a href="{% url 'all_video' %}?catagory=phy" class="topics col-xs-4 my-1 mx-1 ">physics</a>
             </div>
             
         </div>
@@ -70,7 +70,7 @@
             <h1 class="mb-3">Take a survey to understand your mind .</h1>
             <p class="mb-5">There will be 20 questions which will help you , to use your full potential in the right direction.</p>
             <a href="">
-                <button type="button" name="" id="" class="btn btn-primary rounded-pill"> Start Now </button>
+                <button type="button" name="" id="" class="btn btn-primary col-2 rounded-pill"> Start Now </button>
             </a>
         </div>
     </div>
@@ -90,9 +90,23 @@
                 
             </div>
         <div class="videoca " style="padding: 0%;">
+            {% for video in videos %}
             <div class="col">
+                <a href="{% url 'video' video.slug %}" class="card shadow text-left text-decoration-none text-dark">
+                    <iframe class="card-img"  src="{{video.video_url}}" style="pointer-events: none;"></iframe>   
+                    <div class="card-body">
+                        <h5> <b>{{ video.title }}</b> </h5>
+                        <p>Catagory: <span class="text-primary">{{video.get_catagory_display}}</span></p>
+                        <small class="text-muted">{{ video.creation_time }}</small>
+                    </div>
+                    <div class="card-footer">
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            <!-- <div class="col">
                 <div class="card card-body">
-                    <iframe  src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>   
                 </div>
             </div>
@@ -107,13 +121,7 @@
                     <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>   
                 </div>
-            </div>
-            <div class="col">
-                <div class="card card-body">
-                    <iframe   src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                    </iframe>   
-                </div>
-            </div>
+            </div> -->
             
         </div>
     </div>

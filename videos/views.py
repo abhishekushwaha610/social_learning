@@ -79,15 +79,16 @@ class AllList(ListView):
     paginate_by = 10
     def get_queryset(self):
         # self.language = get_object_or_404(ProjectDetail, language=self.kwargs['catagory'])
-        # query = self.kwargs["catagory"]
-        # if query == "all":
-        #     return ProjectDetail.objects.all()
+        catagory = self.request.GET.get("catagory",None)
+        
+        if catagory:
+            return Video.objects.filter(catagory=catagory)
         # elif query=="search":
         #     word = self.request.GET["fields"]
         #     # print(word)
         #     return ProjectDetail.objects.filter(Q(headline__contains=word) | Q(language__contains = word))
 
-        return Video.objects.all().order_by("creation_time")
+        return Video.objects.all().order_by("-creation_time")
 
 
 def all_videos(request):
