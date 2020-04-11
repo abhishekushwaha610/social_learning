@@ -18,49 +18,45 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                  <!-- <li class="nav-item active">
-                      <a class="nav-link text-dark" href="#">Home <span class="sr-only">(current)</span></a>
-                  </li> -->
-                  <!-- search        -->
-                  
-                  <form class="form-inline ml-auto col-md-7 pl-0 mt-1" id="searchForm" method="POST" action="{% url 'search' %}">{% csrf_token %}
-                      <input class="form-control col-8" name="search" type="search?redirect={{request.path}}" placeholder="Search">
-                      <button class="btn btn-outline-success ml-3" type="submit">Search</button>
-                  </form>
-
-                  {% if request.user.is_authenticated %}
-                  <a href="{% url 'upload' %}" class=" mr-3  btn btn-outline-danger " >Upload Video</a>
-
-                  <div class="rounded-circle navprofile-img position-relative">
-                    
-                    <img src="{{user.image}}" alt="{{user}}" class="rounded-circle navprofile-img" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                  
-                    <div class=" dropdown-menu dropdown-menu-right mt-3 " aria-labelledby="dropdownId">
-                      <a class="dropdown-item" href="{% url 'profile'  %}?redirect={{request.path}}">Profile</a>
-                      <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
               
-                    </div>
-                  </div>
 
-                  {% else %}
-                    <a href="{% url 'login' %}?redirect={{request.path}}" class="btn btn-outline-danger  mr-sm-0 font-weight-bold ">
-                      Login
-                    </a>
-                    <div class="dropdown mr-5">
-                      <a href="#" class="btn btn-lg  dropdown-toggle text-dark" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Signup
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <a style="text-decoration: none;" href="{% url 'signup' 'std' %}"><button class="dropdown-item" type="button">Student</button></a>
-                        <!-- <a style="text-decoration: none;" href="#"><button class="dropdown-item" type="button">Institute</button></a> -->
-                        <a style="text-decoration: none;" href="{% url 'signup' 'teach' %}"><button class="dropdown-item" type="button">Teacher</button></a>
+                  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <li class=" nav-link  ">
+                        <a class=" nav-link  font-weight-bold text-danger" href="{% url 'all_video' %}">Explore</a>
+                    </li>
+                    <!-- search        -->
+                    
+                    <form class="form-inline ml-auto col-md-7 pl-0 mt-1" id="searchForm" method="GET" action="{% url 'search' %}">
+                        <input class="form-control col-8" name="search" type="search?redirect={{request.path}}" placeholder="Search">
+                        <button class="btn btn-outline-success ml-3" type="submit">Search</button>
+                    </form>
+                    {% if request.user.is_authenticated %}
+                    {% if user.teacher %}
+                    <a href="{% url 'upload' %}" class=" mr-3  btn btn-outline-danger " >Upload Video</a>
+                    {%endif%}
+                    
+                    <div class="rounded-circle navprofile-img position-relative">
+                      {% if user.teacher %}
+                      <img src="{{user.teacher.image.url}}" alt="{{user}}" class="rounded-circle navprofile-img" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false" height="32" width="32">
+                      {%else%}
+                      <img src="{{user.student.image.url}}" alt="{{user}}" class="rounded-circle navprofile-img" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false" height="32" width="32">
+                      {%endif%}
+
+                      <div class=" dropdown-menu dropdown-menu-right mt-3 " aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="{% url 'profile' user.username  %}?redirect={{request.path}}">Profile</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                       </div>
                     </div>
-                    {% endif %}
-              </div>
-            </div>
+                    
+                    {% else %}
+                      <a href="{% url 'login' %}?redirect={{request.path}}" class="btn btn-outline-danger  mr-sm-0 font-weight-bold ">
+                        Login
+                      </a>
+
+                      {%endif%}
+
 
         </nav>
       </header>

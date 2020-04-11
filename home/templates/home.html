@@ -8,19 +8,33 @@
 <link rel="stylesheet" href="{% static '/css/home.css' %}">
 <!-- main section   -->
 <section class="mainsec">
+    {% if request.user.is_authenticated %}
     <div class="maintxt">
-        <h1 class="text-center">A new way to understand the world and yourself .</h1>
+        <h1 class="text-center mb-5"> View all your lectures just from here . </h1>
         <div class="row">
-            <div class="col-6">
-                <a name="" id="" class="btn btn-primary rounded-pill " href="#" role="button">Join Now</a> 
 
+            <div class="col-12">
+                <a name="" id="" class="btn btn-outline-primary rounded-pill regbtn " href="{% url 'all_video' %}" role="button"> Your Tutorials</a> 
             </div>
-            <div class="col-6">
-                <a name="" id="" class="btn btn-primary rounded-pill " href="#" role="button">Join Now</a> 
-
-            </div>
+            
         </div>
     </div>
+    {% else %}
+    <div class="maintxt">
+        <h1 class="text-center mb-5">A new way to understand the world and yourself .</h1>
+        <div class="row">
+            <div class="col-6">
+                <a name="" id="" class="btn btn-outline-primary rounded-pill regbtn " href="{% url 'signup' 'std' %}" role="button">Student</a> 
+
+            </div>
+            <div class="col-6">
+                <a name="" id="" class="btn btn-outline-primary rounded-pill regbtn " href="{% url 'signup' 'teach' %}" role="button">Tutor</a> 
+
+            </div>
+
+        </div>
+    </div>
+    {% endif %}
 </section>
 
 <!-- Choose section -->
