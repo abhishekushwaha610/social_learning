@@ -9,14 +9,17 @@
 <hr align="center" width="80%" color="green">
         <div class="row " style="padding: 0%;">
         {% for video in videos %} <!--database attributes should be change -->
+        
             <div class="col-sm-6" style = "padding-bottom: 15px; padding-top: 15px;">
+               
                 <div class="embed-responsive embed-responsive-16by9 ">
                     <iframe  src="{{ video.video_url }}">
-                    </iframe>       
-                   
-                </div>
+                    </iframe>   
+                      
+                </div><br>
+                <h3><a href="{% url 'video' video.slug %}">{{video.title}} </a>  </h3><br>
             </div>            
-            <a href="{% url 'video' video.slug %}">{{video.title}} </a><br>
+            <br>
             {{video.creation_time}} <br>
             {{video.description}} <br>
         {% endfor %}  
@@ -27,7 +30,7 @@
 {% if is_paginated %}
 <nav aria-label="Page navigation example">
     
-    <ul class="pagination justify-content-center mt-5 mr-3">
+    <ul class="pagination justify-content-center   mr-3">
         <li class="page-item">
             {% if page_obj.has_previous %}  
                 <a class="page-link " 
