@@ -1,3 +1,13 @@
+footer a{
+    color: grey !important;
+
+}
+
+footer a:hover{
+    text-decoration: none;
+    color: blue !important;
+}
+
 .mainNavbar{
     background-color: white !important;
 }
