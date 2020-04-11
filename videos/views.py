@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import Video_upload_form,Comment_form
 from .models import Video,Comment
-
+from django.views.generic import ListView
 from django.contrib import messages
 
 def videos(request,slug):
@@ -72,6 +72,23 @@ def comment_delete(request,comment_id):
     if url:
         return redirect(url)
     return redirect("/")
+
+class AllList(ListView):
+    template_name = "All_videos.html"
+    context_object_name = 'videos'
+    paginate_by =1
+    def get_queryset(self):
+        # self.language = get_object_or_404(ProjectDetail, language=self.kwargs['catagory'])
+        # query = self.kwargs["catagory"]
+        # if query == "all":
+        #     return ProjectDetail.objects.all()
+        # elif query=="search":
+        #     word = self.request.GET["fields"]
+        #     # print(word)
+        #     return ProjectDetail.objects.filter(Q(headline__contains=word) | Q(language__contains = word))
+
+        return Video.objects.all().order_by("creation_time")
+
 
 def all_videos(request):
     videos = Video.objects.all()

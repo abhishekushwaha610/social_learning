@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<section  style="background-color: antiquewhite;"> 
-<div style="padding-top: 60px;"></div>
-<a href="{% url 'logout' %}" class="btn btn-danger">Logout </a>
+<section  style="background-color: antiquewhite; " > 
+<div style="padding-top: 100px;"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <div class="card card-body h-100" style="text-align: center;">
-                <img src="{% static 'images/user.png'%}" alt="user image" style="margin-left: 20%; border-radius: 50%;" width="50%">
+                <img src="{{ user.teacher.image.url }}" alt="user image" style="margin-left: 20%; border-radius: 50%;" width="50%">
                 <hr>
-                <p>deepak silawat</p>
-                <p>abcr123@gmail.com</p>
-                <a class="btn btn-primary" href="#" role="button">Update Profile</a>
+                <p>{{user.first_name}} {{user.last_name}} </p>
+                <p>{{user.email}}</p>
+                <a class="btn btn-primary" href="{% url 'edit_profile' %}" role="button">Update Profile</a>
+                <a href="{% url 'logout' %}" class="btn btn-danger mt-4">Logout </a>
             </div>
         </div>
 
@@ -20,13 +20,11 @@
             <div class="card card-body h-100" style="text-align: center;">
                 <h5>Institute</h5>
                 <hr>
-                <p>Truba college of scince and technology by pass road bhopal</p>
+                <p>{{user.teacher.institute}}</p>
                 <hr>
                 <h5>Qulification</h5>
                 <hr>
-                <p>B.tech
-                    BSC
-                </p>
+                <p>{{user.teacher.qualifications}}</p>
             </div>
         </div>
 
@@ -34,27 +32,24 @@
             <div class="card card-body h-100" style="text-align: center;">
                 <h5>Work Exprience </h5>
                 <hr>
-                <p>Hygrophoropsis aurantiaca, the false chanterelle, is a species of fungus in the family Hygrophoropsidaceae. It is found across several continents, growing in woodland and heathland, and sometimes on woodchips used in gardening and landscaping. Its mushrooms are yellow-orange with a funnel-shaped cap up to 8 cm (3 1⁄8 in) across that has a felt-like surface. The thin, often forked gills on the underside of the cap run partway down the length of the otherwise smooth stalk. The mushroom can be mildly poisonous. Austrian naturalist Franz Xaver von Wulfen described the false chanterelle in 1781, noting both its resemblance to the true chanterelles and people's propensity to confuse them. The false chanterelle</p>
+                <p>{{user.teacher.status}}</p>
             </div>
         </div>
+        
 
-        <div class="col-md-6 ">
-            <div class="card card-body h-100" style="text-align: center;">
-                <h5>About You </h5>
-                <hr>
-                <p>Hygrophoropsis aurantiaca, the false chanterelle, is a species of fungus in the family Hygrophoropsidaceae. It is found across several continents, growing in woodland and heathland, and sometimes on woodchips used in gardening and landscaping. Its mushrooms are yellow-orange with a funnel-shaped cap up to 8 cm (3 1⁄8 in) across that has a felt-like surface. The thin, often forked gills on the underside of the cap run partway down the length of the otherwise smooth stalk. The mushroom can be mildly poisonous. Austrian naturalist Franz Xaver von Wulfen described the false chanterelle in 1781, noting both its resemblance to the true chanterelles and people's propensity to confuse them. The false chanterelle</p>
-            </div>
-        </div>
-
-        <div class="col-md-6 ">
-            <div class="card card-body h-100" style="text-align: center;">
-                <h5>Uploaded Videos </h5>
-                <hr>
-                <iframe  class="mt-2" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                </iframe>
-                <p>nkjnjfadadjkdfn</p>
-                <span>1k</span>
-            </div>
+        <div class="container col-md-10 ">
+            <h5 align="center" class="mt-4 bg-light p-4">Uploaded Videos </h5>
+            {% for video in user.video_set.all %}
+            <a href="{% url 'video' video.slug %}" class="card-body media bg-light text-decoration-none ">
+                <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                <!-- <img src="..." class="mr-3" alt="..."> -->
+                <div class="media-body">
+                  <h5 class="mt-0">{{video.title}}</h5>
+                  <p class="text-muted">{{video.creation_time}}</p>
+                </div>
+            </a>
+            <!-- <hr> -->
+            {% endfor %}
         </div>
     </div>
 </div>

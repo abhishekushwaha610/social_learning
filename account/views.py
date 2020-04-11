@@ -20,7 +20,13 @@ class EmailorUsernameModelBackend(ModelBackend):
                 return user
         return None
 
-
+def is_teacher(user):
+    try:
+        teacher = user.teacher
+    except:
+        teacher = None
+    return teacher
+    
 def login(request):
     if request.method == "POST":
         email_or_username = request.POST["email_or_username"]
@@ -53,7 +59,7 @@ def signup(request,type):
             
             if password != cpassword:
                 messages.error(request,"Password does not match!")
-                return render(request,"signup.html",{"form": Student_form()})
+                return render(request,"signup.html",{"form": form})
             else:
                 try:
                     user = User.objects.get(Q(username__iexact=username) | Q(email__iexact=email))
@@ -62,9 +68,14 @@ def signup(request,type):
                 if user is None:
                     user = User.objects.create_user(username=username,email=email, first_name = fname, last_name = lname,password=password)
                     user.save()
-                    student = form.save(commit=False)
-                    student.student = user
-                    student.save()
+                    profile = form.save(commit=False)
+                    if type == "teach":
+                        print("teacher form")
+                        profile.teacher = user
+                    else:
+                        profile.student = user
+                        
+                    profile.save()
                     messages.success(request,"Signup succes !")
                     return redirect("login")
                 messages.error(request,"User With profile has already Exist!")
@@ -83,5 +94,39 @@ def logout(request):
     auth.logout(request)
     return redirect("login")
 
-def profile(request):
-    return render(request,"student_profile.html")
+def profile(request,username):
+    user = User.objects.get(username=username)
+    teacher = is_teacher(user)
+    if teacher:
+        print('teacher')
+        return render(request,"teacher_profile.html",{'user':user})
+    return render(request,"student_profile.html",{'user':user})
+
+
+def edit_profile(request):
+    teacher = is_teacher(request.user)
+    if request.method == "POST":
+        if teacher:
+            form = Teacher_form(request.POST,request.FILES,instance=teacher)
+        else:
+            form = Student_form(request.POST,request.FILES,instance=request.user.student)    
+        if form.is_valid():
+            fname = request.POST["fname"]
+            lname = request.POST["lname"]
+            username = request.POST["username"]
+            email = request.POST["email"]
+        
+            form.save(commit=True)
+            request.user.first_name = fname
+            request.user.last_name = lname
+            request.user.username = username
+            request.user.email = email
+            request.user.save()
+            return redirect("profile", request.user.username)
+        else:
+            messages.error(request,"Something went wrong please try again !")
+            return redirect("edit_profile")
+    if teacher:
+        return render(request,"signup.html",{"form": Teacher_form(),"teach":True,"edit":True})
+    return render(request,"signup.html",{"form": Student_form(),"edit":True})
+    
