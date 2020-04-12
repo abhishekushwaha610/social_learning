@@ -7,7 +7,7 @@ from  django.db.models import Q
 # from .forms import SurveyForm
 # Create your views here.
 def home(request):
-    video = Video.objects.all()
+    video = Video.objects.all()[:4]
     param ={
         "videos": video,
     }
@@ -22,7 +22,7 @@ def search(request):
         if match:
             return render(request,'search.html',{'videos':match})
         else:
-            return HttpResponse('data no found')    
+            return render(request,'search.html')
     else:
         return redirect("/")
     # return render(request,'search.html')

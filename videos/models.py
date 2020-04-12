@@ -13,14 +13,19 @@ VIDEO_CATEGORIES = (
     ('chy', 'Chemistry'),
     ('bio', 'Biology'),
 )
+def file_upload_path(instance,filename):
+    return "notes/%s-%s" %(instance.slug,filename)
+
 class Video(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
-    slug = models.SlugField(null = False)
+    slug = models.SlugField(unique=True)
     description = models.TextField(max_length=300)
-    creation_time = models.DateTimeField(default=datetime.now() , blank=False, null=False) 
+    creation_time = models.DateTimeField(default=str(datetime.now())) 
     video_url = models.URLField()
     catagory = models.CharField(choices=VIDEO_CATEGORIES,max_length=3)
+    notes = models.FileField(upload_to=file_upload_path,null=True,blank=True)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
@@ -33,7 +38,7 @@ class Comment(models.Model):
     video = models.ForeignKey(Video,on_delete=models.CASCADE)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='replies',on_delete=models.CASCADE)
     description = models.TextField(max_length=300)
-    creation_time = models.DateTimeField(default=datetime.now()) 
+    creation_time = models.DateTimeField(default=str(datetime.now())) 
     
     def __str__(self):
         return str(self.user)
