@@ -1,5 +1,5 @@
 from django import forms
-from .models import Survey
+# from .models import Survey
 
 
 class NewVideoForm(forms.Form):
@@ -8,7 +8,7 @@ class NewVideoForm(forms.Form):
     file = forms.FileField()
 
 
-class SurveyForm(forms.Form):
-    class Meta:
-        model   = Survey
-        fields  =['name' ,'subject']
+# class SurveyForm(forms.Form):
+#     class Meta:
+#         model   = Survey
+#         fields  =['name' ,'subject']

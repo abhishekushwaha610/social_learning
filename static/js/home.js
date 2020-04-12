@@ -4,6 +4,8 @@ right = $('#right')
 carousel = $(".videoca")[0]
 i = 0 
 
+left.mouse
+
 left.click(
     function () {
         if(carousel.offsetLeft<0){

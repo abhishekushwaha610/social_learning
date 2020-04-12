@@ -32,6 +32,12 @@
     justify-content: center;
     height: 100vh;
     text-align: center;
+    background-image: url('../images/1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
 }
 
 #second h1{
@@ -47,9 +53,9 @@
 }
 
 .topics{
-    background-color: rgb(180, 180, 180);
+    background-color: white;
     border-radius: 100px;
-    padding: .3em 1em ;
+    padding: .5em 2em ;
     text-decoration: none;
     color:black;
 }
@@ -57,7 +63,7 @@
 .topics:hover{
     text-decoration: none;
 
-    background-color: blue;
+    background-color: rgb(0, 81, 255);
     color: white;
 }
 
@@ -98,6 +104,7 @@
     display: flex;
     align-items: center;
     overflow-x: scroll;
+    overflow-y: hidden;
     position: relative;
     /* margin-left: -400px; */
     margin-right: -400px;
@@ -138,3 +145,34 @@
     position: absolute;
 }
 
+/* fifth section */
+
+
+#fifth{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    height: fit-content;
+    text-align: center;
+    overflow: hidden;
+}
+
+.title{
+    font-size: 50px;
+}
+
+#fifth h1,h2,h3,h4,p{
+    text-align: center;
+}
+
+#fifth .htp{
+    max-height:fit-content;
+    text-align: center;
+    overflow: hidden;
+}
+.htp img{
+    object-fit: cover;
+    max-width:100%;
+}
