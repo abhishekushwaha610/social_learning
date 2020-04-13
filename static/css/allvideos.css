@@ -14,3 +14,7 @@
 .lectitle{
     color: black;
 }
+
+.lecvideo iframe{
+    border: none !important;
+}

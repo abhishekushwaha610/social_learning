@@ -31,7 +31,7 @@
         {% for video in videos %} 
             <a href="{% url 'video' video.slug %}" class="card-body my-2 mx-2 media bg-light text-decoration-none videos">
                 <div class="lecvideo">
-                    <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                    <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none; border: none;"></iframe>
                 </div>
                 <!-- <img src="..." class="mr-3" alt="..."> -->
                 <div class="media-body">
