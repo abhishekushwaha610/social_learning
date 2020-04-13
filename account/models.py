@@ -22,7 +22,8 @@ class Teacher(models.Model):
     institute = models.CharField(max_length=50)
     qualifications  = models.CharField(max_length=50)
     status = models.CharField(max_length=50)
-
+    work_experience = models.TextField(null=True,blank=True)
+    
     def __str__(self):
         return str(self.teacher)
     

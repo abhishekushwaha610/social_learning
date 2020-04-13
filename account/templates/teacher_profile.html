@@ -29,7 +29,7 @@
     </div>
     <div class="row">
         <div class="col-md-5 mt-3">
-            <div class="card shadow card-body h-100" style="text-align: center;">
+            <div class="card shadow  card-body h-100" style="text-align: center;">
                 <h5>Institute</h5>
                 <hr>
                 <p>{{user.teacher.institute}}</p>
@@ -37,13 +37,26 @@
                 <h5>Qulification</h5>
                 <hr>
                 <p>{{user.teacher.qualifications}}</p>
+                <hr>
+                <h5>Status</h5>
+                <hr>
+                <p>{{user.teacher.status}}</p>
             </div>
         </div>
         <div class="col-md-7 mt-3 ">
             <div class="card shadow card-body h-100" style="text-align: center;">
                 <h5>Work Exprience </h5>
+                {% if request.user == user %}
+                <button class="text-danger btn" onclick="addExp()">Edit Exprience</button>
+                <form action="{% url 'update_exp' %}"  id="experience" style="display: none;" method="POST">{% csrf_token %}
+                    <div>
+                        <textarea name="work_experience" id="" cols="30" rows="9" class="form-control" placeholder="Edit Experience" >{{user.teacher.work_experience}}</textarea>
+                        <button class="form-control btn btn-danger mt-4">Update</button>
+                    </div>
+                </form>
+                {% endif %}
+                {{user.teacher.work_experience}}
                 <hr>
-                <p>{{user.teacher.status}}</p>
             </div>
         </div>
     </div>
@@ -119,3 +132,11 @@
 </div>
 </section>
 {% endblock content %}
+{% block script%}
+<script>
+    function addExp(){
+        
+        $("#experience").show().focus();
+    }
+</script>
+{% endblock script%}

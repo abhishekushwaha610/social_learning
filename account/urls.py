@@ -7,6 +7,8 @@ urlpatterns = [
     path("logout/",views.logout,name="logout"),
     path("signup/<str:type>",views.signup,name="signup"),
     path("edit-profile",views.edit_profile,name="edit_profile"),
+    path("update_exp",views.update_exp,name="update_exp"),
+    
     # path("edit-profile",views.delete_profile,name="delete_profile"),
     # foggot password
     path('reset_password/',auth_views.PasswordResetView.as_view(), name='reset_password'),
