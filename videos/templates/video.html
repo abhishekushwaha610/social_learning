@@ -8,7 +8,7 @@
             <div style="margin-top: 60px;"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-8 ">
                         <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
                         <div class="d-flex">
                             <h5 class="mt-2">{{video.title}}</h5>
@@ -99,10 +99,25 @@
                       </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="card card-body">
-                            <p>Up Next</p>
+                    <div class="col-md-4">
+                        <div class="card " style="height: 32rem;">
+                            <div class="card-header">Up Next</div>
+                            <div class="overflow-auto">
+                                
+                            {% for video in video.user.video_set.all%}
+                                <a href="{% url 'video' video.slug %}" class="card-body media text-decoration-none">
+                                    <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                                    <!-- <img src="..." class="mr-3" alt="..."> -->
+                                    <div class="media-body">
+                                        <h6 class="mt-0">{{video.title}}</h6>
+                                        <small class="text-muted">{{video.creation_time}}</small>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                            
+                            </div>
                         </div>
+
                     </div>  
 
 
