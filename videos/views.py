@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect ,get_object_or_404
 from .forms import Video_upload_form,Comment_form
-from .models import Video,Comment
+from .models import Video,Comment , Playlist
 from django.views.generic import ListView
 from django.contrib import messages
 
@@ -90,7 +90,21 @@ class AllList(ListView):
 
         return Video.objects.all().order_by("-creation_time")
 
-
 def all_videos(request):
     videos = Video.objects.all()
     return render(request,"All_videos.html",{"videos":videos})
+
+def add_to_playlist(request,slug):
+    video = get_object_or_404(Video , slug=slug)
+    # newplaylist = Playlist.objects.create(video=video)
+    video_qs = Playlist.objects.filter(user = request.user)
+    
+    if video_qs.exists():    
+        if Playlist.video.filter(video__slug = video.slug).exists():
+            pass
+    else:
+        newplaylist = Playlist.objects.create(user = request.user , video = video)
+        Playlist.video.add(newplaylist)
+
+    return redirect("videos" ,slug=slug)
+    

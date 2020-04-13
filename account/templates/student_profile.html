@@ -1,13 +1,56 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static '/css/profile.css' %}">
 <section  class="jumbotron" style="background-color: antiquewhite;">
-<div style="padding-top: 100px;"></div>
 <div class="container">
-    <div class="row ">
+    <div class="row my-5">
+        <div class="col-md-3">
+            <div class="img text-center proimg">
+                <img src="{{user.student.image.url}}" alt="user image" style= "border-radius: 50%;" width="50%">
+            </div>
+        </div>
+        <div class="col-md-9 usertxt">
+            <h3>
+                {{user.first_name}}
+            </h3>
+            <p>@{{user.email}}</p>
+            {% if user == request.user %}
+            <a class="btn btn-primary" href="{% url 'edit_profile' %}" role="button">Update Profile</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Logout </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 mt-3">
+            <div class="card shadow card-body h-100" style="text-align: center;">
+                <h5>Institute</h5>
+                <hr>
+                <p>{{user.student.institute}}</p>
+                <hr>
+                <h5>Interests</h5>
+                <hr>
+                <p>{{user.student.interests}}</p>
+            </div>
+        </div>
+        <div class="col-md-7 mt-3 ">
+            <div class="card shadow card-body h-100" style="text-align: center;">
+                <h5>About Student</h5>
+                <hr>
+                <p>Hygrophoropsis aurantiaca, the false chanterelle, is a species of fungus in the family Hygrophoropsidaceae. It is found across several continents, growing in woodland and heathland, and sometimes on woodchips used in gardening and landscaping. Its mushrooms are yellow-orange with a funnel-shaped cap up to 8 cm (3 1⁄8 in) across that has a felt-like surface. The thin, often forked gills on the underside of the cap run partway down the length of the otherwise smooth stalk. The mushroom can be mildly poisonous. Austrian naturalist Franz Xaver von Wulfen described the false chanterelle in 1781, noting both its resemblance to the true chanterelles and people's propensity to confuse them. The false chanterelle</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Previous Profile view  -->
+    
+    <!-- <div class="row ">
         <div class="col-md-3 ">
             <div class="card shadow card-body h-100" style="text-align: center;">
-                <img src="{{user.student.image.url}}" alt="user image" style="margin-left: 20%; border-radius: 50%;" width="50%">
+                <div class="img">
+                    <img src="{{user.student.image.url}}" alt="user image" style= border-radius: 50%;" width="50%">
+                </div>
                 <hr>
                 <p>{{user.first_name}} {{user.last_name}}</p>
                 <p>@{{user.email}}</p>
@@ -39,7 +82,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 </div>
 </section>
 {% endblock content %}

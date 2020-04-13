@@ -1,6 +1,10 @@
 header{
     height: 55px;
 }
+
+.dropdown-menu{
+    margin-top: 1em;
+}
 footer a{
     color: grey !important;
 
@@ -28,15 +32,25 @@ footer a:hover{
     .navbar-toggler{
         border: none !important;
     }
+
+    .nav-link{
+        padding-left: 0px;
+    }
+
     .navbar-toggler:focus{
         border: none !important;
         outline: none;
     }
+
+    #searchForm{
+        margin-bottom: 1rem;
+    }
+
     .navprofile-img{
         margin: .5em 0em;
     }
     .dropdown-menu{
         width: 100%;
-        padding-top: 100%;
+        margin-top: 1em;
     }
 }
