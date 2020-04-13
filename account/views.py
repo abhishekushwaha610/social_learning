@@ -129,4 +129,10 @@ def edit_profile(request):
     if teacher:
         return render(request,"signup.html",{"form": Teacher_form(),"teach":True,"edit":True})
     return render(request,"signup.html",{"form": Student_form(),"edit":True})
-    
+
+def update_exp(request):
+    if request.method == "POST":
+        text = request.POST["work_experience"]
+        request.user.teacher.work_experience = text
+        request.user.teacher.save()
+        return render(request,"teacher_profile.html",{'user':request.user})
