@@ -1,5 +1,10 @@
 Social learning
-Theme: Education and awareness—Learning must not stop!
+
+Instructions:
+• Clone Social-learning file
+• Delete sqlite3 file
+• run `python manage.py migrate` command
+• run `python manage.py runserver` command
 
 Team Detail:	
 Total team strength: 5
