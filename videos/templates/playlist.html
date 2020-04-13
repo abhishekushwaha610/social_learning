@@ -28,17 +28,19 @@
         {% endfor %}   -->
         <!--database attributes should be change -->
             
-        {% for video in videos %} 
-            <a href="{% url 'video' video.slug %}" class="card-body my-2 mx-2 media bg-light text-decoration-none videos">
+        {% for play in playlist %} 
+        {{play.video.url}}
+            <a href="" class="card-body my-2 mx-2 media bg-light text-decoration-none videos">
                 <div class="lecvideo">
-                    <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none; border: none;"></iframe>
+                    <iframe  class="align-self-center mr-3" src="{{play.video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
                 </div>
                 <!-- <img src="..." class="mr-3" alt="..."> -->
                 <div class="media-body">
-                  <h5 class="mt-0 lectitle">{{video.title}}</h5>
-                  <p class="text-muted">{{video.creation_time}}</p>
+                  <h5 class="mt-0 lectitle">{{play.video.title}}</h5>
+                  <p class="text-muted">{{play.video.creation_time}}</p>
                 </div>
             </a>
+            <a href="{}">Remove </a>
             <!-- <hr> -->
             {% endfor %}
         </div>

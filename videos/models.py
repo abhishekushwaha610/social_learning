@@ -51,5 +51,8 @@ class Comment(models.Model):
         return str(self.user)
 
 class Playlist(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    video = models.ManyToManyField(Video)
+    user = models.ForeignKey(User,on_delete=models.CASCADE , null=True)
+    video = models.ManyToManyField(Video , null=True)
+
+    def __str__(self):
+        return str(self.user)
