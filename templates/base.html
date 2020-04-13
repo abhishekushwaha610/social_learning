@@ -99,10 +99,10 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="/notes">Notes</a>
+            <a href="{% url 'all_video' %}?redirect={{request.path}}">Notes</a>
           </li>
           <li>
-            <a href="/lectures">Lectures</a>
+            <a href="{% url 'all_video' %}?redirect={{request.path}}">Lectures</a>
           </li>
           <li>
             <a href="/contact">Contact Us</a>
@@ -121,16 +121,16 @@
 
         <ul class="list-unstyled">
           <li>
-            <a href="/notes"> Art </a>
+            <a href="{% url 'all_video' %}?catagory=art"> Art </a>
           </li>
           <li>
-            <a href="/lectures">Science</a>
+            <a href="{% url 'all_video' %}?catagory=bio">Science</a>
           </li>
           <li>
-            <a href="/contact">Mathematics</a>
+            <a href="{% url 'all_video' %}?catagory=mth">Mathematics</a>
           </li>
           <li>
-            <a href="#!">More</a>
+            <a href="{% url 'all_video' %}?redirect={{request.path}}">More</a>
           </li>
         </ul>
 
