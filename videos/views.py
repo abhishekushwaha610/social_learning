@@ -95,12 +95,13 @@ def all_videos(request):
     return render(request,"All_videos.html",{"videos":videos})
 
 def add_to_playlist(request,slug):
-    myslug = get_object_or_404(Video , slug=slug)
-    newvideo = Video.objects.create(slug = myslug)
+    newvideo = get_object_or_404(Video , slug=slug)
+    # newvideo = Video.objects.create(slug = myslug)
+    if not request.user.playlist_set.all():
+        
+        newplaylist = Playlist.objects.create( user = request.user )
+        newplaylist.video.add(newvideo)
+        # newplaylist.save()
 
-    newplaylist = Playlist.objects.create( user = request.user )
-    # newplaylist.save()
-    newplaylist.video.add(newvideo)
-
-    return redirect("videos" ,slug=slug)
+    return redirect("video" ,slug)
     
