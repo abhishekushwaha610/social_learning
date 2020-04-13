@@ -12,6 +12,7 @@ urlpatterns = [
     path("D_<slug>/",views.delete_video,name="delete_video"),
     path("comment-save/<int:video_id>/<int:comment_id>",views.comment_save,name="comment_save"),
     path("delete-comment/<int:comment_id>",views.comment_delete,name="comment_delete"),
-    path("<slug>/",views.videos,name="video"),
     path("add-to-playlist/<slug>/",add_to_playlist,name="add-to-playlist"),
+    path("playlist/",views.show_playlist,name="show_playlist"),
+    path("<slug>/",views.videos,name="video"),
 ]

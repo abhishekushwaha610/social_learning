@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title%} Social Leaning {% endblock %}
+{% block content %}
+{% load static %}
+<!--database attributes should be change -->
+<link rel="stylesheet" href="{% static 'css/allvideos.css' %}">
+<marquee class="bg-danger text-white py-3"  behavior="alternate" direction="left">Stay Home We Safe</marquee>
+<section class="allsec" >   
+    
+    <div class="container">
+        
+<h1 class="h1-responsive font-weight-bold my-5 " style="text-align:center">Video Lectures.</h1>
+        <div class="row " style="padding: 0%;">
+        <!-- {% for video in videos %} 
+        
+            <div class="col-sm-6" style = "padding-bottom: 15px; padding-top: 15px;">
+               
+                <div class="embed-responsive embed-responsive-16by9 ">
+                    <iframe  src="{{ video.video_url }}">
+                    </iframe>   
+                      
+                </div><br>
+                <h3><a href="{% url 'video' video.slug %}">{{video.title}} </a>  </h3><br>
+            </div>            
+            <br>
+            {{video.creation_time}} <br>
+            {{video.description}} <br>
+        {% endfor %}   -->
+        <!--database attributes should be change -->
+            
+        {% for play in playlist %} 
+        {{play.video.url}}
+            <a href="" class="card-body my-2 mx-2 media bg-light text-decoration-none videos">
+                <div class="lecvideo">
+                    <iframe  class="align-self-center mr-3" src="{{play.video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                </div>
+                <!-- <img src="..." class="mr-3" alt="..."> -->
+                <div class="media-body">
+                  <h5 class="mt-0 lectitle">{{play.video.title}}</h5>
+                  <p class="text-muted">{{play.video.creation_time}}</p>
+                </div>
+            </a>
+            <a href="{}">Remove </a>
+            <!-- <hr> -->
+            {% endfor %}
+        </div>
+    </div> 
+</section>
+
+    
+{% if is_paginated %}
+<nav aria-label="Page navigation example">
+    
+    <ul class="pagination justify-content-center   mr-3">
+        <li class="page-item">
+            {% if page_obj.has_previous %}  
+                <a class="page-link " 
+                href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+                {% endif %}
+            </li>
+            <li class="page-item text-danger active"><a class="page-link"href="">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </a></li>
+            
+            <li class="page-item ">
+                {% if page_obj.has_next %}
+                <a class="page-link " 
+                href="?page={{ page_obj.next_page_number }}">Next&nbsp;&raquo;</a> 
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+{% endif %}
+
+    {% endblock content %}

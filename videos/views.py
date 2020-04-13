@@ -105,3 +105,7 @@ def add_to_playlist(request,slug):
 
     return redirect("video" ,slug)
     
+def show_playlist(request):
+    videos = request.user.playlist_set.all()
+    
+    return render(request,"playlist.html",{"playlist": videos})
