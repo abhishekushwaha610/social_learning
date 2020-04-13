@@ -5,11 +5,11 @@
 <!--database attributes should be change -->
 <link rel="stylesheet" href="{% static 'css/allvideos.css' %}">
 <marquee class="bg-danger text-white py-3"  behavior="alternate" direction="left">Stay Home We Safe</marquee>
-
+<section class="allsec" >   
+    
     <div class="container">
         
-<h2 class="h1-responsive font-weight-bold  "style="text-align:center">Video Lectures.</h2>
-<hr align="center" width="80%" color="green">
+<h1 class="h1-responsive font-weight-bold my-5 " style="text-align:center">Video Lectures.</h1>
         <div class="row " style="padding: 0%;">
         <!-- {% for video in videos %} 
         
@@ -29,11 +29,13 @@
         <!--database attributes should be change -->
             
         {% for video in videos %} 
-            <a href="{% url 'video' video.slug %}" class="card-body my-2 mx-2 media bg-light text-decoration-none ">
-                <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+            <a href="{% url 'video' video.slug %}" class="card-body my-2 mx-2 media bg-light text-decoration-none videos">
+                <div class="lecvideo">
+                    <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                </div>
                 <!-- <img src="..." class="mr-3" alt="..."> -->
                 <div class="media-body">
-                  <h5 class="mt-0">{{video.title}}</h5>
+                  <h5 class="mt-0 lectitle">{{video.title}}</h5>
                   <p class="text-muted">{{video.creation_time}}</p>
                 </div>
             </a>
@@ -41,6 +43,7 @@
             {% endfor %}
         </div>
     </div> 
+</section>
 
     
 {% if is_paginated %}
@@ -65,6 +68,6 @@
             </li>
         </ul>
     </nav>
-    {% endif %}
+{% endif %}
 
     {% endblock content %}

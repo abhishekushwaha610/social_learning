@@ -1,0 +1,16 @@
+*{
+    transition: all .35s;
+}
+.allsec{
+    min-height: 100vh;
+    height: fit-content;
+}
+
+.videos{
+    padding: 1em;
+    border-radius: 20px;
+}
+
+.lectitle{
+    color: black;
+}
