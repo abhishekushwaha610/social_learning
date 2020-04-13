@@ -12,9 +12,7 @@
                         <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
                         <div class="d-flex justify-content-between ">
                             <h5 class="mt-2 text-uppercase">{{video.title}}</h5>
-                            <a class="btn btn-outline-primary ml-2" href="{{video.get_add_to_playlist_url}}">
-                                Watch Later
-                            </a>
+                            <!--  -->
                         </div>
                         <p>
                             {% if request.user == video.user%}
