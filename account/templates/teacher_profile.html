@@ -1,10 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static '/css/profile.css' %}">
+
 <section  style="background-color: antiquewhite; " > 
 <div style="padding-top: 100px;"></div>
 <div class="container">
+  
+    <div class="row my-5">
+        
+        <div class="col-md-3">
+            <div class="img text-center proimg">
+                <img src="{{ user.teacher.image.url }}" alt="user image" class="rounded-circle" width="70%">
+
+            </div>
+        </div>
+
+        <div class="col-md-9 usertxt">
+            <h3>
+                {{user.first_name}}
+            </h3>
+            <p>@{{user.email}}</p>
+            {% if user == request.user %}
+            <a class="btn btn-primary" href="{% url 'edit_profile' %}" role="button">Update Profile</a>
+            <a href="{% url 'logout' %}" class="btn btn-danger">Logout </a>
+            {% endif %}
+        </div>
+    </div>
     <div class="row">
+        <div class="col-md-5 mt-3">
+            <div class="card shadow card-body h-100" style="text-align: center;">
+                <h5>Institute</h5>
+                <hr>
+                <p>{{user.teacher.institute}}</p>
+                <hr>
+                <h5>Qulification</h5>
+                <hr>
+                <p>{{user.teacher.qualifications}}</p>
+            </div>
+        </div>
+        <div class="col-md-7 mt-3 ">
+            <div class="card shadow card-body h-100" style="text-align: center;">
+                <h5>Work Exprience </h5>
+                <hr>
+                <p>{{user.teacher.status}}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row my-5">
+        <div class=" col-md-12 p-1">
+            <h5 align="center" class="mt-4 bg-light p-4">Uploaded Videos </h5>
+            {% for video in user.video_set.all %}
+            <a href="{% url 'video' video.slug %}" class="card-body media bg-light text-decoration-none ">
+                <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
+                <img src="..." class="mr-3" alt="...">
+                <div class="media-body">
+                  <h5 class="mt-0">{{video.title}}</h5>
+                  <p class="text-muted">{{video.creation_time}}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>        
+    </div>
+
+    <!-- Old profile  -->
+    <!-- <div class="row">
         <div class="col-md-3">
             <div class="card card-body h-100" style="text-align: center;">
                 <div class="">
@@ -46,16 +107,15 @@
             {% for video in user.video_set.all %}
             <a href="{% url 'video' video.slug %}" class="card-body media bg-light text-decoration-none ">
                 <iframe  class="align-self-center mr-3" src="{{video.video_url}}" width="128" height="84"  style="pointer-events: none;"></iframe>
-                <!-- <img src="..." class="mr-3" alt="..."> -->
+                <img src="..." class="mr-3" alt="...">
                 <div class="media-body">
                   <h5 class="mt-0">{{video.title}}</h5>
                   <p class="text-muted">{{video.creation_time}}</p>
                 </div>
             </a>
-            <!-- <hr> -->
             {% endfor %}
         </div>
-    </div>
+    </div> -->
 </div>
 </section>
 {% endblock content %}

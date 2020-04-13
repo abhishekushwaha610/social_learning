@@ -1,3 +1,4 @@
+from django.shortcuts import render,redirect ,reverse
 from django.db import models
 from datetime import datetime
 from django.template.defaultfilters import slugify
@@ -29,6 +30,12 @@ class Video(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
+    def get_add_to_playlist_url(self):
+        return reverse("add-to-playlist" , kwargs={
+            'slug':self.slug
+            })
+
     def __str__(self):
         return self.title
     
@@ -38,7 +45,11 @@ class Comment(models.Model):
     video = models.ForeignKey(Video,on_delete=models.CASCADE)
     parent = models.ForeignKey('self', null=True, blank=True, related_name='replies',on_delete=models.CASCADE)
     description = models.TextField(max_length=300)
-    creation_time = models.DateTimeField(default=str(datetime.now())) 
+    creation_time = models.DateTimeField(default=str(datetime.now()))
     
     def __str__(self):
         return str(self.user)
+
+class Playlist(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    video = models.ManyToManyField(Video)

@@ -10,7 +10,12 @@
                 <div class="row">
                     <div class="col-md-9">
                         <iframe height="500" src="{{video.video_url}}" class="card-img" frameborder="0" allowfullscreen></iframe>
-                        <h5 class="mt-2">{{video.title}}</h5>
+                        <div class="d-flex">
+                            <h5 class="mt-2">{{video.title}}</h5>
+                            <a href="{{video.get_add_to_playlist_url}}">
+                                Watch Later
+                            </a>
+                        </div>
                         <p>
                             {% if request.user == video.user%}
                             <a href="{% url 'edit_video' video.slug %}"> Edit </a>|
@@ -61,6 +66,7 @@
                                                 {{comment_form}}
                                                 <button class="btn btn-danger mt-2">comment </button>
                                             </form>
+
                                             {% for gchild in child.replies.all%}                        
                                             <div class="media mt-3">
                                                 <a class="mr-3" href="{% url 'profile' gchild.user %}"> <img src="{% if gchild.user.teacher %}{{gchild.user.teacher.image.url}}{%else%}{{gchild.user.student.image.url}}{%endif%}" class="mr-1" alt="..." width="64" height="64"> </a>
